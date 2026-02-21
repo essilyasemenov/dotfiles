@@ -24,7 +24,7 @@ link:
 deps:
 	@echo "→ Installing system dependencies..."
 	@which brew > /dev/null || (echo "Homebrew not found. Install it first: https://brew.sh" && exit 1)
-	brew install neovim ripgrep fd lazygit stylua
+	brew install neovim ripgrep fd stylua
 
 # ─── Go инструменты ──────────────────────────────────────────────────────────
 

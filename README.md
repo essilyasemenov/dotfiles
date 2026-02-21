@@ -24,7 +24,7 @@ Then open Neovim and run `:Lazy sync` to install plugins.
 
 | Step | Command | What it installs |
 |------|---------|-----------------|
-| 1 | `make deps` | neovim, ripgrep, fd, lazygit, stylua |
+| 1 | `make deps` | neovim, ripgrep, fd, stylua |
 | 2 | `make tools` | gopls, dlv, gomodifytags, impl, gotests, gofumpt |
 | 3 | `make link` | symlinks `~/dotfiles/nvim` → `~/.config/nvim` |
 
@@ -54,7 +54,8 @@ make update  # update Go tools
 | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Git integration |
 | [nvim-dap](https://github.com/mfussenegger/nvim-dap) + nvim-dap-go | Debugger |
 | [neotest](https://github.com/nvim-neotest/neotest) + neotest-go | Test runner |
-| [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) | Terminal + lazygit |
+| [vim-fugitive](https://github.com/tpope/vim-fugitive) | Git commands |
+| [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) | Floating terminal |
 | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) | Buffer tabs |
 | [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | Status line |
 | [gopher.nvim](https://github.com/olexsmir/gopher.nvim) | Go tools (tags, impl, err) |
@@ -135,6 +136,13 @@ make update  # update Go tools
 
 | Key | Action |
 |-----|--------|
+| `<leader>gg` | Git status (fugitive) |
+| `<leader>gc` | Git commit |
+| `<leader>gp` | Git push |
+| `<leader>gP` | Git pull |
+| `<leader>gl` | Git log (oneline) |
+| `<leader>gd` | Diff current file |
+| `<leader>gb` | Git blame |
 | `]h / [h` | Next / previous hunk |
 | `<leader>hs` | Stage hunk |
 | `<leader>hr` | Reset hunk |
@@ -142,11 +150,10 @@ make update  # update Go tools
 | `<leader>hS` | Stage entire file |
 | `<leader>hR` | Reset entire file |
 | `<leader>hp` | Preview hunk |
-| `<leader>hd` | Diff file |
+| `<leader>hd` | Diff file (gitsigns) |
 | `<leader>hb` | Blame line |
 | `<leader>hB` | Blame line (full commit) |
 | `<leader>ht` | Toggle inline blame |
-| `<leader>g` | Open lazygit |
 
 ### Debugger
 

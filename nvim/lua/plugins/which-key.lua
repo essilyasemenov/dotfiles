@@ -20,7 +20,7 @@ return {
         { "<leader>d",  group = "Debug" },
         { "<leader>t",  group = "Тесты" },
         { "<leader>c",  group = "Код / Go" },
-        { "<leader>g",  desc  = "LazyGit" },
+        { "<leader>g",  group = "Git" },
 
         -- Одиночные биндинги (для документации)
         { "<leader>rn", desc = "Переименовать символ" },
