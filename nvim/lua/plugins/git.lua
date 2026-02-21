@@ -11,13 +11,13 @@ return {
       { "<leader>gd", "<cmd>Gdiffsplit<cr>",        desc = "Git diff файла" },
       { "<leader>gb", "<cmd>Git blame<cr>",         desc = "Git blame" },
       { "<leader>gs", function()
-        require("telescope.builtin").git_branches({ pattern = "--no-remotes" })
+        require("telescope.builtin").git_branches({ show_remote_tracking_branches = false })
       end, desc = "Git switch branch" },
       { "<leader>gS", ":Git switch -c ",                 desc = "Git new branch" },
       { "<leader>gm", function()
         require("telescope.builtin").git_branches({
           prompt_title = "Merge branch",
-          pattern = "--no-remotes",
+          show_remote_tracking_branches = false,
           attach_mappings = function(_, map)
             map("i", "<CR>", function(prompt_bufnr)
               local selection = require("telescope.actions.state").get_selected_entry(prompt_bufnr)
