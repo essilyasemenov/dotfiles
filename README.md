@@ -8,15 +8,27 @@ Neovim configuration for Go backend development.
 
 ## Quick Start
 
+### macOS (Homebrew)
+
 ```bash
 git clone git@github.com:essilyasemenov/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 make install
 ```
 
-Then open Neovim and run `:Lazy sync` to install plugins.
-
 > **Requires:** [Homebrew](https://brew.sh) and [Go](https://go.dev/dl) installed before running `make install`.
+
+### Ubuntu / Debian
+
+```bash
+git clone git@github.com:essilyasemenov/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+make -f Makefile.ubuntu install
+```
+
+> **Requires:** [Go](https://go.dev/dl) installed before running `make install`.
+
+Then open Neovim and run `:Lazy sync` to install plugins.
 
 ---
 
@@ -24,17 +36,24 @@ Then open Neovim and run `:Lazy sync` to install plugins.
 
 | Step | Command | What it installs |
 |------|---------|-----------------|
-| 1 | `make deps` | neovim, ripgrep, fd, stylua |
+| 1 | `make deps` | neovim, ripgrep, fd, stylua (brew on macOS, apt on Ubuntu) |
 | 2 | `make tools` | gopls, dlv, gomodifytags, impl, gotests, gofumpt |
 | 3 | `make link` | symlinks `~/dotfiles/nvim` → `~/.config/nvim` |
 
 Run steps individually if needed:
 
 ```bash
+# macOS
 make deps    # system packages only
 make tools   # Go tools only
 make link    # symlink only
 make update  # update Go tools
+
+# Ubuntu / Debian
+make -f Makefile.ubuntu deps
+make -f Makefile.ubuntu tools
+make -f Makefile.ubuntu link
+make -f Makefile.ubuntu update
 ```
 
 ---
