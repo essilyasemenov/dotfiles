@@ -1,33 +1,18 @@
 return {
   {
-    "tpope/vim-fugitive",
-    cmd = { "Git", "G", "Gdiffsplit", "Gvdiffsplit" },
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "sindrets/diffview.nvim",
+    },
     keys = {
-      { "<leader>gg", "<cmd>Git<cr>",              desc = "Git status" },
-      { "<leader>gc", "<cmd>Git commit<cr>",        desc = "Git commit" },
-      { "<leader>gp", "<cmd>Git push<cr>",          desc = "Git push" },
-      { "<leader>gP", "<cmd>Git pull<cr>",          desc = "Git pull" },
-      { "<leader>gl", "<cmd>Git log --oneline<cr>", desc = "Git log" },
-      { "<leader>gd", "<cmd>Gdiffsplit<cr>",        desc = "Git diff файла" },
-      { "<leader>gb", "<cmd>Git blame<cr>",         desc = "Git blame" },
-      { "<leader>gs", function()
-        require("telescope.builtin").git_branches({ show_remote_tracking_branches = false })
-      end, desc = "Git switch branch" },
-      { "<leader>gS", ":Git switch -c ",                 desc = "Git new branch" },
-      { "<leader>gm", function()
-        require("telescope.builtin").git_branches({
-          prompt_title = "Merge branch",
-          show_remote_tracking_branches = false,
-          attach_mappings = function(_, map)
-            map("i", "<CR>", function(prompt_bufnr)
-              local selection = require("telescope.actions.state").get_selected_entry(prompt_bufnr)
-              require("telescope.actions").close(prompt_bufnr)
-              vim.cmd("Git merge " .. selection.value)
-            end)
-            return true
-          end,
-        })
-      end, desc = "Git merge" },
+      { "<leader>gg", function() require("neogit").open() end, desc = "Neogit status" },
+    },
+    opts = {
+      integrations = {
+        diffview = true,
+        telescope = true,
+      },
     },
   },
   {

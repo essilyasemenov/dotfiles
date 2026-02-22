@@ -2,7 +2,7 @@
 
 Neovim configuration for Go backend development.
 
-**Stack:** lazy.nvim · gopls · nvim-dap + Delve · neotest · telescope · heather.nvim
+**Stack:** lazy.nvim · gopls · nvim-dap + Delve · neotest · telescope · neogit · heather.nvim
 
 ---
 
@@ -54,7 +54,8 @@ make update  # update Go tools
 | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Git integration |
 | [nvim-dap](https://github.com/mfussenegger/nvim-dap) + nvim-dap-go | Debugger |
 | [neotest](https://github.com/nvim-neotest/neotest) + neotest-go | Test runner |
-| [vim-fugitive](https://github.com/tpope/vim-fugitive) | Git commands |
+| [neogit](https://github.com/NeogitOrg/neogit) | Git client (Magit-style) |
+| [diffview.nvim](https://github.com/sindrets/diffview.nvim) | Git diff viewer |
 | [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) | Floating terminal |
 | [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) | Buffer tabs |
 | [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | Status line |
@@ -136,13 +137,7 @@ make update  # update Go tools
 
 | Key | Action |
 |-----|--------|
-| `<leader>gg` | Git status (fugitive) |
-| `<leader>gc` | Git commit |
-| `<leader>gp` | Git push |
-| `<leader>gP` | Git pull |
-| `<leader>gl` | Git log (oneline) |
-| `<leader>gd` | Diff current file |
-| `<leader>gb` | Git blame |
+| `<leader>gg` | Open Neogit (all git ops inside) |
 | `]h / [h` | Next / previous hunk |
 | `<leader>hs` | Stage hunk |
 | `<leader>hr` | Reset hunk |
