@@ -152,11 +152,34 @@ make -f Makefile.ubuntu update
 | `<leader>n` | Toggle file tree |
 | `<leader>N` | Reveal current file in tree |
 
-### Git
+### Git (Neogit)
 
 | Key | Action |
 |-----|--------|
-| `<leader>gg` | Open Neogit (all git ops inside) |
+| `<leader>gg` | Open Neogit |
+
+Inside Neogit buffer:
+
+| Key | Action |
+|-----|--------|
+| `s` | Stage file/hunk |
+| `u` | Unstage |
+| `x` | Discard changes |
+| `c` | Commit popup |
+| `P` | Push popup |
+| `p` | Pull popup |
+| `b` | Branch popup (switch, create, delete) |
+| `m` | Merge popup |
+| `Z` | Stash popup |
+| `l` | Log popup |
+| `d` | Diff popup |
+| `Tab` | Expand/collapse section |
+| `q` | Close Neogit |
+
+### Git (Gitsigns)
+
+| Key | Action |
+|-----|--------|
 | `]h / [h` | Next / previous hunk |
 | `<leader>hs` | Stage hunk |
 | `<leader>hr` | Reset hunk |
