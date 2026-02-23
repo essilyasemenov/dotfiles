@@ -31,8 +31,14 @@
   -- ╰─────────────────────────────────────────╯
 
   -- Буфер = открытый файл в памяти (как вкладка, но не совсем)
-  map("n", "<Tab>", ":bnext<CR>", { desc = "Следующий буфер" })
-  map("n", "<S-Tab>", ":bprev<CR>", { desc = "Предыдущий буфер" })
+  map("n", "<Tab>", function()
+    if vim.bo.filetype == "neo-tree" then return end
+    vim.cmd("bnext")
+  end, { desc = "Следующий буфер" })
+  map("n", "<S-Tab>", function()
+    if vim.bo.filetype == "neo-tree" then return end
+    vim.cmd("bprev")
+  end, { desc = "Предыдущий буфер" })
   map("n", "<leader>x", ":bdelete<CR>", { desc = "Закрыть буфер" })
 
   -- ╭─────────────────────────────────────────╮
