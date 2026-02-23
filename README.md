@@ -1,12 +1,14 @@
-# dotfiles
+# dotfiles — Neovim для Go
 
-Neovim configuration for Go backend development.
+Конфигурация Neovim для Go-бэкенд-разработки.
 
-**Stack:** lazy.nvim · gopls · nvim-dap + Delve · neotest · telescope · neogit · heather.nvim
+**Стек:** lazy.nvim · gopls · nvim-dap + Delve · neotest · telescope · neogit · heather.nvim
+
+> **Обозначения:** `<Leader>` = пробел, `C-x` = Ctrl+x, `S-x` = Shift+x
 
 ---
 
-## Quick Start
+## Быстрый старт
 
 ### macOS (Homebrew)
 
@@ -16,7 +18,7 @@ cd ~/dotfiles
 make install
 ```
 
-> **Requires:** [Homebrew](https://brew.sh) and [Go](https://go.dev/dl) installed before running `make install`.
+> **Требуется:** [Homebrew](https://brew.sh) и [Go](https://go.dev/dl) перед запуском `make install`.
 
 ### Ubuntu / Debian
 
@@ -26,28 +28,28 @@ cd ~/dotfiles
 make -f Makefile.ubuntu install
 ```
 
-> **Requires:** [Go](https://go.dev/dl) installed before running `make install`.
+> **Требуется:** [Go](https://go.dev/dl) перед запуском `make install`.
 
-Then open Neovim and run `:Lazy sync` to install plugins.
+После запуска открой Neovim и выполни `:Lazy sync` для установки плагинов.
 
 ---
 
-## What `make install` does
+## Что делает `make install`
 
-| Step | Command | What it installs |
-|------|---------|-----------------|
-| 1 | `make deps` | neovim, ripgrep, fd, stylua (brew on macOS, apt on Ubuntu) |
+| Шаг | Команда | Что устанавливает |
+|-----|---------|-------------------|
+| 1 | `make deps` | neovim, ripgrep, fd, stylua (brew на macOS, apt на Ubuntu) |
 | 2 | `make tools` | gopls, dlv, gomodifytags, impl, gotests, gofumpt |
-| 3 | `make link` | symlinks `~/dotfiles/nvim` → `~/.config/nvim` |
+| 3 | `make link` | симлинк `~/dotfiles/nvim` → `~/.config/nvim` |
 
-Run steps individually if needed:
+Можно запускать по отдельности:
 
 ```bash
 # macOS
-make deps    # system packages only
-make tools   # Go tools only
-make link    # symlink only
-make update  # update Go tools
+make deps    # системные пакеты
+make tools   # Go-утилиты
+make link    # симлинк
+make update  # обновить Go-утилиты
 
 # Ubuntu / Debian
 make -f Makefile.ubuntu deps
@@ -58,208 +60,312 @@ make -f Makefile.ubuntu update
 
 ---
 
-## Plugins
+## Плагины
 
-| Plugin | Purpose |
-|--------|---------|
-| [lazy.nvim](https://github.com/folke/lazy.nvim) | Plugin manager |
-| [heather.nvim](https://github.com/essilyasemenov/heather.nvim) | Colorscheme |
-| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Syntax highlighting |
-| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) + gopls | LSP (Go) |
-| [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) + LuaSnip | Autocomplete |
-| [conform.nvim](https://github.com/stevearc/conform.nvim) | Format on save |
-| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder |
-| [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) | File explorer |
-| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Git integration |
-| [nvim-dap](https://github.com/mfussenegger/nvim-dap) + nvim-dap-go | Debugger |
-| [neotest](https://github.com/nvim-neotest/neotest) + neotest-go | Test runner |
-| [neogit](https://github.com/NeogitOrg/neogit) | Git client (Magit-style) |
-| [diffview.nvim](https://github.com/sindrets/diffview.nvim) | Git diff viewer |
-| [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) | Floating terminal |
-| [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) | Buffer tabs |
-| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | Status line |
-| [gopher.nvim](https://github.com/olexsmir/gopher.nvim) | Go tools (tags, impl, err) |
-| [which-key.nvim](https://github.com/folke/which-key.nvim) | Keybinding hints |
-| [nvim-surround](https://github.com/kylechui/nvim-surround) | Surround text objects |
-| [nvim-autopairs](https://github.com/windwp/nvim-autopairs) | Auto brackets |
-| [todo-comments.nvim](https://github.com/folke/todo-comments.nvim) | Highlight TODOs |
-| [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) | Indent guides |
-| [vim-illuminate](https://github.com/RRethy/vim-illuminate) | Highlight word under cursor |
+### Менеджер плагинов
 
----
+| Плагин | Назначение |
+|--------|------------|
+| [lazy.nvim](https://github.com/folke/lazy.nvim) | Менеджер плагинов |
 
-## Keybindings
+### Тема
 
-`<leader>` = Space
+| Плагин | Назначение |
+|--------|------------|
+| [heather.nvim](https://github.com/essilyasemenov/heather.nvim) | Цветовая схема |
 
-### General
+### Синтаксис
 
-| Key | Action |
-|-----|--------|
-| `<C-s>` | Save file |
-| `jk` | Exit insert mode |
-| `<Esc>` | Clear search highlight |
-| `<Tab>` | Next buffer |
-| `<S-Tab>` | Previous buffer |
-| `<leader>x` | Close buffer |
-| `<C-h/j/k/l>` | Navigate between splits |
-| `J / K` (visual) | Move selection down / up |
-| `< / >` (visual) | Indent (stay in visual mode) |
-| `p` (visual) | Paste without overwriting clipboard |
+| Плагин | Назначение |
+|--------|------------|
+| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Подсветка синтаксиса (tree-sitter) |
 
 ### LSP
 
-| Key | Action |
-|-----|--------|
-| `gd` | Go to definition |
-| `gD` | Go to declaration |
-| `gi` | Go to implementation |
-| `gr` | Show references |
-| `K` | Hover documentation |
-| `<leader>rn` | Rename symbol |
-| `<leader>ca` | Code action |
-| `<leader>e` | Show diagnostic |
-| `[d / ]d` | Previous / next diagnostic |
+| Плагин | Назначение |
+|--------|------------|
+| [mason.nvim](https://github.com/mason-org/mason.nvim) | UI для управления LSP-серверами |
+| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) | Конфигурация LSP (gopls) |
 
-### Autocomplete
+### Автодополнение
 
-| Key | Action |
-|-----|--------|
-| `<C-j/k>` | Navigate completion list |
-| `<Tab>` | Next item / expand snippet |
-| `<S-Tab>` | Previous item / jump back in snippet |
-| `<CR>` | Confirm selection |
-| `<C-Space>` | Trigger completion manually |
-| `<C-e>` | Close completion |
-| `<C-b/f>` | Scroll docs |
+| Плагин | Назначение |
+|--------|------------|
+| [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) | Движок автодополнения |
+| [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp) | Источник: LSP |
+| [cmp-buffer](https://github.com/hrsh7th/cmp-buffer) | Источник: слова из буферов |
+| [cmp-path](https://github.com/hrsh7th/cmp-path) | Источник: пути к файлам |
+| [LuaSnip](https://github.com/L3MON4D3/LuaSnip) | Движок сниппетов |
+| [cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip) | Источник: LuaSnip → cmp |
+| [friendly-snippets](https://github.com/rafamadriz/friendly-snippets) | Готовые сниппеты (Go, Lua и др.) |
+
+### Форматирование
+
+| Плагин | Назначение |
+|--------|------------|
+| [conform.nvim](https://github.com/stevearc/conform.nvim) | Форматирование при сохранении |
+
+### Поиск
+
+| Плагин | Назначение |
+|--------|------------|
+| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Нечёткий поиск (fuzzy finder) |
+| [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim) | Нативный fzf-сортировщик для Telescope |
+
+### Проводник
+
+| Плагин | Назначение |
+|--------|------------|
+| [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) | Файловое дерево |
+
+### Git
+
+| Плагин | Назначение |
+|--------|------------|
+| [neogit](https://github.com/NeogitOrg/neogit) | Git-клиент (в стиле Magit) |
+| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Знаки изменений, blame, hunks |
+| [diffview.nvim](https://github.com/sindrets/diffview.nvim) | Просмотр Git-диффов |
+
+### Отладка
+
+| Плагин | Назначение |
+|--------|------------|
+| [nvim-dap](https://github.com/mfussenegger/nvim-dap) | Debug Adapter Protocol |
+| [nvim-dap-go](https://github.com/leoluz/nvim-dap-go) | Конфигурация DAP для Go (Delve) |
+| [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) | UI отладчика (переменные, стек, брейкпоинты) |
+| [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text) | Значения переменных в строках кода |
+
+### Тесты
+
+| Плагин | Назначение |
+|--------|------------|
+| [neotest](https://github.com/nvim-neotest/neotest) | Фреймворк для запуска тестов |
+| [neotest-go](https://github.com/nvim-neotest/neotest-go) | Адаптер neotest для Go |
+
+### Go
+
+| Плагин | Назначение |
+|--------|------------|
+| [gopher.nvim](https://github.com/olexsmir/gopher.nvim) | Go-утилиты (теги, impl, if err) |
+
+### Терминал
+
+| Плагин | Назначение |
+|--------|------------|
+| [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) | Плавающий терминал |
+
+### UI
+
+| Плагин | Назначение |
+|--------|------------|
+| [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) | Табы буферов |
+| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | Строка статуса |
+| [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) | Вертикальные линии отступов |
+| [vim-illuminate](https://github.com/RRethy/vim-illuminate) | Подсветка слова под курсором |
+| [which-key.nvim](https://github.com/folke/which-key.nvim) | Подсказки горячих клавиш |
+| [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) | Иконки файлов |
+
+### Редактирование
+
+| Плагин | Назначение |
+|--------|------------|
+| [nvim-surround](https://github.com/kylechui/nvim-surround) | Работа со скобками/кавычками |
+| [nvim-autopairs](https://github.com/windwp/nvim-autopairs) | Автозакрытие скобок |
+| [todo-comments.nvim](https://github.com/folke/todo-comments.nvim) | Подсветка TODO/FIXME/NOTE |
+
+### Утилиты (зависимости)
+
+| Плагин | Назначение |
+|--------|------------|
+| [plenary.nvim](https://github.com/nvim-lua/plenary.nvim) | Lua-библиотека (telescope, neogit, neotest и др.) |
+| [nvim-nio](https://github.com/nvim-neotest/nvim-nio) | Async IO (nvim-dap-ui, neotest) |
+| [nui.nvim](https://github.com/MunifTanjim/nui.nvim) | UI-компоненты (neo-tree) |
+| [FixCursorHold.nvim](https://github.com/antoinemadec/FixCursorHold.nvim) | Фикс CursorHold (neotest) |
+
+---
+
+## Горячие клавиши
+
+### Основные
+
+| Клавиша | Действие |
+|---------|----------|
+| `<C-s>` | Сохранить файл |
+| `jk` | Выйти из режима вставки |
+| `<Esc>` | Убрать подсветку поиска |
+| `<Tab>` | Следующий буфер |
+| `<S-Tab>` | Предыдущий буфер |
+| `<Leader>x` | Закрыть буфер |
+| `<C-h/j/k/l>` | Навигация между окнами |
+| `J / K` (visual) | Переместить строки вниз / вверх |
+| `< / >` (visual) | Отступ (остаёмся в visual mode) |
+| `p` (visual) | Вставить без потери буфера обмена |
+
+### LSP
+
+| Клавиша | Действие |
+|---------|----------|
+| `gd` | Перейти к определению |
+| `gD` | Перейти к декларации |
+| `gi` | Перейти к реализации |
+| `gr` | Показать ссылки (references) |
+| `K` | Документация (hover) |
+| `<Leader>rn` | Переименовать символ |
+| `<Leader>ca` | Code action |
+| `<Leader>e` | Показать диагностику |
+| `[d / ]d` | Предыдущая / следующая ошибка |
+
+### Автодополнение
+
+| Клавиша | Действие |
+|---------|----------|
+| `<C-j/k>` | Навигация по списку |
+| `<Tab>` | Следующий пункт / раскрыть сниппет |
+| `<S-Tab>` | Предыдущий пункт / назад по сниппету |
+| `<CR>` | Подтвердить выбор |
+| `<C-Space>` | Вызвать дополнение вручную |
+| `<C-e>` | Закрыть дополнение |
+| `<C-b/f>` | Прокрутка документации |
 
 ### Telescope
 
-| Key | Action |
-|-----|--------|
-| `<leader>ff` | Find file |
-| `<leader>fg` | Live grep |
-| `<leader>fb` | Open buffers |
-| `<leader>fr` | Recent files |
-| `<leader>fc` | Find word under cursor |
-| `<leader>fh` | Help tags |
-| `<leader>ft` | Find TODOs |
+| Клавиша | Действие |
+|---------|----------|
+| `<Leader>ff` | Найти файл |
+| `<Leader>fg` | Поиск по проекту (live grep) |
+| `<Leader>fb` | Открытые буферы |
+| `<Leader>fr` | Недавние файлы |
+| `<Leader>fc` | Найти слово под курсором |
+| `<Leader>fh` | Справка Neovim |
+| `<Leader>ft` | Найти TODO в проекте |
 
-### File Explorer
+Внутри Telescope:
 
-| Key | Action |
-|-----|--------|
-| `<leader>n` | Toggle file tree |
-| `<leader>N` | Reveal current file in tree |
+| Клавиша | Действие |
+|---------|----------|
+| `<C-j/k>` | Навигация по результатам |
+| `<C-q>` | Отправить в quickfix list |
+| `<Esc>` | Закрыть |
+
+### Проводник
+
+| Клавиша | Действие |
+|---------|----------|
+| `<Leader>n` | Открыть/закрыть файловое дерево |
+| `<Leader>N` | Показать текущий файл в дереве |
 
 ### Git (Neogit)
 
-| Key | Action |
-|-----|--------|
-| `<leader>gg` | Open Neogit |
+| Клавиша | Действие |
+|---------|----------|
+| `<Leader>gg` | Открыть Neogit |
 
-Inside Neogit buffer:
+Внутри буфера Neogit:
 
-| Key | Action |
-|-----|--------|
-| `s` | Stage file/hunk |
+| Клавиша | Действие |
+|---------|----------|
+| `s` | Stage файл/hunk |
 | `u` | Unstage |
-| `x` | Discard changes |
-| `c` | Commit popup |
-| `P` | Push popup |
-| `p` | Pull popup |
-| `b` | Branch popup (switch, create, delete) |
-| `m` | Merge popup |
-| `Z` | Stash popup |
-| `l` | Log popup |
-| `d` | Diff popup |
-| `Tab` | Expand/collapse section |
-| `q` | Close Neogit |
+| `x` | Отменить изменения (discard) |
+| `c` | Commit |
+| `P` | Push |
+| `p` | Pull |
+| `b` | Ветки (switch, create, delete) |
+| `m` | Merge |
+| `Z` | Stash |
+| `l` | Лог |
+| `d` | Diff |
+| `Tab` | Развернуть/свернуть секцию |
+| `q` | Закрыть Neogit |
 
 ### Git (Gitsigns)
 
-| Key | Action |
-|-----|--------|
-| `]h / [h` | Next / previous hunk |
-| `<leader>hs` | Stage hunk |
-| `<leader>hr` | Reset hunk |
-| `<leader>hu` | Undo stage hunk |
-| `<leader>hS` | Stage entire file |
-| `<leader>hR` | Reset entire file |
-| `<leader>hp` | Preview hunk |
-| `<leader>hd` | Diff file (gitsigns) |
-| `<leader>hb` | Blame line |
-| `<leader>hB` | Blame line (full commit) |
-| `<leader>ht` | Toggle inline blame |
+| Клавиша | Действие |
+|---------|----------|
+| `]h / [h` | Следующий / предыдущий hunk |
+| `<Leader>hs` | Stage hunk |
+| `<Leader>hr` | Reset hunk |
+| `<Leader>hu` | Undo stage hunk |
+| `<Leader>hS` | Stage весь файл |
+| `<Leader>hR` | Reset весь файл |
+| `<Leader>hp` | Preview hunk |
+| `<Leader>hd` | Diff файла |
+| `<Leader>hb` | Blame строки |
+| `<Leader>hB` | Blame (полный коммит) |
+| `<Leader>ht` | Toggle inline blame |
 
-### Debugger
+### Отладка
 
-| Key | Action |
-|-----|--------|
-| `<F5>` | Start / continue |
-| `<F10>` | Step over |
-| `<F11>` | Step into |
-| `<F12>` | Step out |
-| `<leader>db` | Toggle breakpoint |
-| `<leader>dB` | Conditional breakpoint |
-| `<leader>dr` | Restart session |
-| `<leader>dq` | Stop debugging |
-| `<leader>du` | Toggle debug UI |
-| `<leader>de` | Evaluate expression |
-| `<leader>dt` | Debug test under cursor |
-| `<leader>dl` | Debug last test |
+| Клавиша | Действие |
+|---------|----------|
+| `<F5>` | Запустить / продолжить |
+| `<F10>` | Шаг через (step over) |
+| `<F11>` | Шаг внутрь (step into) |
+| `<F12>` | Шаг наружу (step out) |
+| `<Leader>db` | Поставить/убрать брейкпоинт |
+| `<Leader>dB` | Условный брейкпоинт |
+| `<Leader>dr` | Перезапустить сессию |
+| `<Leader>dq` | Остановить отладку |
+| `<Leader>du` | Открыть/закрыть UI отладчика |
+| `<Leader>de` | Вычислить выражение |
+| `<Leader>dt` | Отладить тест под курсором |
+| `<Leader>dl` | Повторить последний тест |
 
-### Tests
+### Тесты
 
-| Key | Action |
-|-----|--------|
-| `<leader>tr` | Run test under cursor |
-| `<leader>tR` | Run all tests in file |
-| `<leader>ts` | Toggle test summary panel |
-| `<leader>to` | Show test output |
-| `<leader>tO` | Toggle output panel |
-| `<leader>tS` | Stop tests |
-| `<leader>td` | Debug test via DAP |
-| `]t / [t` | Next / previous failed test |
+| Клавиша | Действие |
+|---------|----------|
+| `<Leader>tr` | Запустить тест под курсором |
+| `<Leader>tR` | Запустить все тесты в файле |
+| `<Leader>ts` | Панель тестов (toggle) |
+| `<Leader>to` | Вывод теста |
+| `<Leader>tO` | Панель вывода (toggle) |
+| `<Leader>tS` | Остановить тесты |
+| `<Leader>td` | Отладить тест через DAP |
+| `]t / [t` | Следующий / предыдущий провалившийся тест |
 
-### Terminal
+### Терминал
 
-| Key | Action |
-|-----|--------|
-| `<C-\>` | Toggle floating terminal |
-| `<Esc>` | Exit terminal mode |
+| Клавиша | Действие |
+|---------|----------|
+| `<C-\>` | Открыть/закрыть плавающий терминал |
+| `<Esc>` | Выйти из режима терминала |
 
-### Buffers
+### Буферы
 
-| Key | Action |
-|-----|--------|
-| `<leader>1-5` | Jump to buffer by number |
+| Клавиша | Действие |
+|---------|----------|
+| `<Leader>1–5` | Перейти к буферу по номеру |
 
-### Go (in .go files only)
+### Go (только в .go файлах)
 
-| Key | Action |
-|-----|--------|
-| `<leader>cj` | Add json struct tags |
-| `<leader>cy` | Add yaml struct tags |
-| `<leader>cJ` | Remove json struct tags |
-| `<leader>ce` | Insert `if err != nil` |
-| `<leader>ci` | Implement interface |
-| `<leader>cm` | Run `go mod tidy` |
+| Клавиша | Действие |
+|---------|----------|
+| `<Leader>cj` | Добавить json-теги к структуре |
+| `<Leader>cy` | Добавить yaml-теги к структуре |
+| `<Leader>cJ` | Убрать json-теги |
+| `<Leader>ce` | Вставить `if err != nil` |
+| `<Leader>ci` | Реализовать интерфейс |
+| `<Leader>cm` | `go mod tidy` |
 
 ### Surround
 
-| Key | Example | Result |
-|-----|---------|--------|
-| `ysiw"` | `word` → `"word"` | Wrap in quotes |
-| `ds"` | `"word"` → `word` | Remove quotes |
-| `cs"'` | `"word"` → `'word'` | Change quotes |
+| Клавиша | Пример | Результат |
+|---------|--------|-----------|
+| `ysiw"` | `word` → `"word"` | Обернуть в кавычки |
+| `ds"` | `"word"` → `word` | Убрать кавычки |
+| `cs"'` | `"word"` → `'word'` | Заменить кавычки |
 
-### Formatting
+### Форматирование
 
-| Key | Action |
-|-----|--------|
-| `<leader>p` | Format file / selection |
+| Клавиша | Действие |
+|---------|----------|
+| `<Leader>p` | Форматировать файл / выделение |
 
-Auto-formats on save for Go (via gopls/gofumpt) and Lua (via stylua).
+Автоформатирование при сохранении: Go (gopls/gofumpt), Lua (stylua).
 
 ---
+
+## Шпаргалка по Vim
+
+Подробная шпаргалка по базовым командам Vim/Neovim (движение, редактирование, поиск, регистры, макросы и др.): [NEOVIM_CHEATSHEET.md](NEOVIM_CHEATSHEET.md)
